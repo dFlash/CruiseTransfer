@@ -1,0 +1,11 @@
+jdbc.driverClassName.ru=<driver>
+jdbc.url.ru=<ru-url>
+jdbc.username.ru=<username>
+jdbc.password.ru=<password>
+hibernate.dialect.ru=<dialect>
+
+jdbc.driverClassName.ua=<driver>
+jdbc.url.ua=<ua-url>
+jdbc.username.ua=<username>
+jdbc.password.ua=<password>
+hibernate.dialect.ua=<dialect>

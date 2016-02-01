@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch 
+		http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		">
+
+	<bean id="cruiseReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Cruise" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+
+	<bean id="cruiseDateRangeReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from CruiseDateRange" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="vesselReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Vessel" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="cityReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from City" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="galleryReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Gallery" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="cruiseCityReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from CruiseCity" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="fileInfoReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from FileInfo" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="countryReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Country" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="companyCategoryReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from CompanyCategory" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="cruiseCategoryReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from CruiseCategory" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="vesselCategoryReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from VesselCategory" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="companyReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Company" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+
+	<job id="mainJob" xmlns="http://www.springframework.org/schema/batch">
+ 		<!-- First step: Drop data and constraints (fk) step -->
+ 		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
+			<flow>
+				<step id="cruiseStep">
+					<tasklet>
+						<chunk reader="cruiseReader" writer="cruiseWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="cruiseDateRangeStep">
+					<tasklet>
+						<chunk reader="cruiseDateRangeReader" writer="cruiseDateRangeWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="vesselStep">
+					<tasklet>
+						<chunk reader="vesselReader" writer="vesselWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="cityStep">
+					<tasklet>
+						<chunk reader="cityReader" writer="cityWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="galleryStep">
+					<tasklet>
+						<chunk reader="galleryReader" writer="galleryWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="cruiseCityStep">
+					<tasklet>
+						<chunk reader="cruiseCityReader" writer="cruiseCityWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow> 
+<!--  			<flow>
+				<step id="fileInfoStep">
+					<tasklet>
+						<chunk reader="fileInfoReader" writer="fileInfoWriter"
+							commit-interval="20" />
+					</tasklet>
+				</step>
+			</flow> -->
+			<flow>
+				<step id="countryStep">
+					<tasklet>
+						<chunk reader="countryReader" writer="countryWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			 <flow>
+				<step id="companyCategoryStep">
+					<tasklet>
+						<chunk reader="companyCategoryReader" writer="companyCategoryWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="cruiseCategoryStep">
+					<tasklet>
+						<chunk reader="cruiseCategoryReader" writer="cruiseCategoryWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="vesselCategoryStep">
+					<tasklet>
+						<chunk reader="vesselCategoryReader" writer="vesselCategoryWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="companyStep">
+					<tasklet>
+						<chunk reader="companyReader" writer="companyWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+		</split>
+ 		<step id="fileInfoStep">
+			<tasklet>
+				<chunk reader="fileInfoReader" writer="fileInfoWriter"
+					commit-interval="50" />
+			</tasklet>
+		</step>
+		<!-- Last step: Create constraints (fk) step -->
+	</job>
+	
+	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
+
+</beans>
