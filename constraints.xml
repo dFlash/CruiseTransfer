@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="fkCityCountry" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="city" />
+		<property name="targetTable" value="country" />
+		<property name="sourceColumn" value="country_id" />
+		<property name="targetColumn" value="country_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
+	</bean>
+	
+	<bean id="fkCityGallery" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="city" />
+		<property name="targetTable" value="gallery" />
+		<property name="sourceColumn" value="gallery_id" />
+		<property name="targetColumn" value="gallery_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
+	</bean>
+	
+	<bean id="fkCountryGallery" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="country" />
+		<property name="targetTable" value="gallery" />
+		<property name="sourceColumn" value="gallery_id" />
+		<property name="targetColumn" value="gallery_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
+	</bean>
+	
+	<bean id="fkCompanyGallery" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="company" />
+		<property name="targetTable" value="gallery" />
+		<property name="sourceColumn" value="gallery_id" />
+		<property name="targetColumn" value="gallery_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
+	</bean>
+	
+	<bean id="fkCompanyCompanyCat" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="company" />
+		<property name="targetTable" value="company_category" />
+		<property name="sourceColumn" value="company_category_id" />
+		<property name="targetColumn" value="company_category_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
+	</bean>
+	
+	<bean id="fkCompanyCruiseCat" class="net.maliavin.transfer.config.FkConstraint">
+		<property name="sourceTable" value="company" />
+		<property name="targetTable" value="cruise_category" />
+		<property name="sourceColumn" value="company_cruise_category_id" />
+		<property name="targetColumn" value="cruise_category_id" />
+		<property name="condition" value="ON UPDATE NO ACTION ON DELETE NO ACTION" />
+	</bean>
+
+	<bean id="constraints" class="java.util.ArrayList">
+		<constructor-arg>
+			<list value-type="net.maliavin.transfer.config.FkConstraint">
+				<ref bean="fkCityCountry" />
+				<ref bean="fkCityGallery" />
+				<ref bean="fkCountryGallery" />
+				<ref bean="fkCompanyGallery" />
+				<ref bean="fkCompanyCompanyCat" />
+				<ref bean="fkCompanyCruiseCat" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+</beans>

@@ -81,7 +81,7 @@
 
 	<job id="mainJob" xmlns="http://www.springframework.org/schema/batch">
  		<!-- First step: Drop data and constraints (fk) step -->
- 		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
+<!--  		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
 			<flow>
 				<step id="cruiseStep">
 					<tasklet>
@@ -130,14 +130,14 @@
 					</tasklet>
 				</step>
 			</flow> 
-<!--  			<flow>
+ 			<flow>
 				<step id="fileInfoStep">
 					<tasklet>
 						<chunk reader="fileInfoReader" writer="fileInfoWriter"
 							commit-interval="20" />
 					</tasklet>
 				</step>
-			</flow> -->
+			</flow>
 			<flow>
 				<step id="countryStep">
 					<tasklet>
@@ -184,8 +184,11 @@
 				<chunk reader="fileInfoReader" writer="fileInfoWriter"
 					commit-interval="50" />
 			</tasklet>
-		</step>
+		</step> -->
 		<!-- Last step: Create constraints (fk) step -->
+		<step id="addFkConstraints">
+			<tasklet ref="fkAppender"/>
+		</step>
 	</job>
 	
 	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
