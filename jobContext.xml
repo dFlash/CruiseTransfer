@@ -99,6 +99,9 @@
 
 	<job id="mainJob" xmlns="http://www.springframework.org/schema/batch">
  		<!-- First step: Drop data and constraints (fk) step -->
+ 		<step id="dropDataAndConstraints" next="splitCruise">
+			<tasklet ref="cleaner"/>
+		</step>
 		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
 			<flow>
 				<step id="cruiseStep">

@@ -5,3 +5,5 @@ Replace jdbc.properties-template to jdbc.properties with corresponding source (r
 Recommended VM arguments:
 -Xms2048m
 -Xmx3000m
+
+Initial db schema - create_tables.sql. 

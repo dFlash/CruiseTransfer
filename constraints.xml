@@ -11,7 +11,7 @@
 		<property name="targetColumn" value="country_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkCityGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="city" />
 		<property name="targetTable" value="gallery" />
@@ -19,7 +19,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCountryGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="country" />
 		<property name="targetTable" value="gallery" />
@@ -27,7 +27,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCompanyGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="company" />
 		<property name="targetTable" value="gallery" />
@@ -35,7 +35,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCompanyCompanyCat" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="company" />
 		<property name="targetTable" value="company_category" />
@@ -43,7 +43,7 @@
 		<property name="targetColumn" value="company_category_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkCompanyCruiseCat" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="company" />
 		<property name="targetTable" value="cruise_category" />
@@ -51,7 +51,7 @@
 		<property name="targetColumn" value="cruise_category_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE NO ACTION" />
 	</bean>
-	
+
 	<bean id="fkCruiseCruiseCat" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="cruise_category" />
@@ -59,7 +59,7 @@
 		<property name="targetColumn" value="cruise_category_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkCruiseLanguageService" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="cruise_language_service" />
@@ -67,7 +67,7 @@
 		<property name="targetColumn" value="cruise_language_service_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCruiseDescriptionGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="gallery" />
@@ -75,7 +75,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCruiseGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="gallery" />
@@ -83,7 +83,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCruiseVessel" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="vessel" />
@@ -91,7 +91,7 @@
 		<property name="targetColumn" value="vessel_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE CASCADE" />
 	</bean>
-	
+
 	<bean id="fkCruiseRegion" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise" />
 		<property name="targetTable" value="region" />
@@ -99,7 +99,7 @@
 		<property name="targetColumn" value="region_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkCruiseDateRangeCruise" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise_date_range" />
 		<property name="targetTable" value="cruise" />
@@ -107,7 +107,7 @@
 		<property name="targetColumn" value="cruise_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE CASCADE" />
 	</bean>
-	
+
 	<bean id="fkCruiseCityCity" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise_city" />
 		<property name="targetTable" value="city" />
@@ -115,7 +115,7 @@
 		<property name="targetColumn" value="city_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkCruiseCityCruise" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="cruise_city" />
 		<property name="targetTable" value="cruise" />
@@ -123,7 +123,7 @@
 		<property name="targetColumn" value="cruise_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE CASCADE" />
 	</bean>
-	
+
 	<bean id="fkFileGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="file" />
 		<property name="targetTable" value="gallery" />
@@ -131,7 +131,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE CASCADE" />
 	</bean>
-	
+
 	<bean id="fkGalleryFile" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="gallery" />
 		<property name="targetTable" value="file" />
@@ -139,7 +139,7 @@
 		<property name="targetColumn" value="file_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkVesselCompany" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="vessel" />
 		<property name="targetTable" value="company" />
@@ -147,7 +147,7 @@
 		<property name="targetColumn" value="company_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkVesselDescGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="vessel" />
 		<property name="targetTable" value="gallery" />
@@ -155,7 +155,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkVesselGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="vessel" />
 		<property name="targetTable" value="gallery" />
@@ -163,7 +163,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkVesselSchemaGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="vessel" />
 		<property name="targetTable" value="gallery" />
@@ -171,7 +171,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkVesselVesselCategory" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="vessel" />
 		<property name="targetTable" value="vessel_category" />
@@ -179,7 +179,7 @@
 		<property name="targetColumn" value="vessel_category_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE RESTRICT" />
 	</bean>
-	
+
 	<bean id="fkContinentGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="continent" />
 		<property name="targetTable" value="gallery" />
@@ -187,7 +187,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkRegionGallery" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="region" />
 		<property name="targetTable" value="gallery" />
@@ -195,7 +195,7 @@
 		<property name="targetColumn" value="gallery_id" />
 		<property name="condition" value="ON UPDATE NO ACTION ON DELETE SET NULL" />
 	</bean>
-	
+
 	<bean id="fkRegionContinent" class="net.maliavin.transfer.config.FkConstraint">
 		<property name="sourceTable" value="region" />
 		<property name="targetTable" value="continent" />
@@ -234,6 +234,28 @@
 				<ref bean="fkRegionContinent" />
 			</list>
 		</constructor-arg>
+	</bean>
+
+	<bean id="tables" class="org.springframework.beans.factory.config.SetFactoryBean">
+		<property name="sourceSet">
+			<set value-type="java.lang.String">
+				<value>city</value>
+				<value>company</value>
+				<value>company_category</value>
+				<value>continent</value>
+				<value>country</value>
+				<value>cruise</value>
+				<value>cruise_category</value>
+				<value>cruise_city</value>
+				<value>cruise_date_range</value>
+				<value>cruise_language_service</value>
+				<value>file</value>
+				<value>gallery</value>
+				<value>region</value>
+				<value>vessel</value>
+				<value>vessel_category</value>
+			</set>
+		</property>
 	</bean>
 
 </beans>

@@ -14,9 +14,9 @@ import net.maliavin.transfer.config.FkConstraint;
 public class PostgresSchemaManager implements SchemaManager
 {
     private static final String FK_PREFIX = "fk";
-    
+
     private static final String FK_NAME_SEPARATOR = "_";
-    
+
     @Autowired
     @Qualifier("sessionFactoryUa")
     private SessionFactory sessionFactory;
@@ -26,11 +26,12 @@ public class PostgresSchemaManager implements SchemaManager
     {
         String sqlTemplate = "ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) "
                 + "      REFERENCES %s (%s) MATCH SIMPLE %s";
+        String fkName = getFkName(constraint.getSourceTable(),
+                constraint.getSourceColumn());
         String sql = String.format(sqlTemplate, constraint.getSourceTable(),
-                getFkName(constraint.getSourceTable(),
-                        constraint.getSourceColumn()),
-                constraint.getSourceColumn(), constraint.getTargetTable(),
-                constraint.getTargetColumn(), constraint.getCondition());
+                fkName, constraint.getSourceColumn(),
+                constraint.getTargetTable(), constraint.getTargetColumn(),
+                constraint.getCondition());
         Session session = sessionFactory.getCurrentSession();
         SQLQuery sqlQuery = session.createSQLQuery(sql);
         sqlQuery.executeUpdate();
@@ -41,6 +42,29 @@ public class PostgresSchemaManager implements SchemaManager
         String fkName = FK_PREFIX + FK_NAME_SEPARATOR + sourceTable
                 + FK_NAME_SEPARATOR + sourceColumn;
         return fkName;
+    }
+
+    @Transactional
+    public void dropFkConstraint(FkConstraint constraint)
+    {
+        String sqlTemplate = "ALTER TABLE %s DROP CONSTRAINT %s";
+        String fkName = getFkName(constraint.getSourceTable(),
+                constraint.getSourceColumn());
+        String sql = String.format(sqlTemplate, constraint.getSourceTable(),
+                fkName);
+        Session session = sessionFactory.getCurrentSession();
+        SQLQuery sqlQuery = session.createSQLQuery(sql);
+        sqlQuery.executeUpdate();
+    }
+
+    @Transactional
+    public void dropData(String tableName)
+    {
+        String sqlTemplate = "TRUNCATE %s";
+        String sql = String.format(sqlTemplate, tableName);
+        Session session = sessionFactory.getCurrentSession();
+        SQLQuery sqlQuery = session.createSQLQuery(sql);
+        sqlQuery.executeUpdate();
     }
 
 }
