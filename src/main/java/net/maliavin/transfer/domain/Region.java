@@ -4,16 +4,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "public.country")
-public class Country
-{
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
+@Entity
+@Table(name = "public.region")
+public class Region
+{
     @Id
-    @Column(name = "country_id", nullable = false)
-    private Long countryId;
+    @Column(name = "region_id", nullable = false)
+    private Long regionId;
+
+    @Column(name = "continent_id")
+    @NotNull
+    private Long continentId;
 
     @Column(name = "name")
     @Size(min = 1, max = 256)
@@ -24,16 +31,27 @@ public class Country
     private String description;
 
     @Column(name = "gallery_id")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Long galleryId;
 
-    public Long getCountryId()
+    public Long getRegionId()
     {
-        return countryId;
+        return regionId;
     }
 
-    public void setCountryId(Long countryId)
+    public void setRegionId(Long regionId)
     {
-        this.countryId = countryId;
+        this.regionId = regionId;
+    }
+
+    public Long getContinentId()
+    {
+        return continentId;
+    }
+
+    public void setContinentId(Long continentId)
+    {
+        this.continentId = continentId;
     }
 
     public String getName()
@@ -69,10 +87,9 @@ public class Country
     @Override
     public String toString()
     {
-        return "Country [countryId=" + countryId + ", name=" + name
-                + ", description=" + description + ", galleryId=" + galleryId
-                + "]";
+        return "Region [regionId=" + regionId + ", continentId=" + continentId
+                + ", name=" + name + ", description=" + description
+                + ", galleryId=" + galleryId + "]";
     }
-    
-    
+
 }

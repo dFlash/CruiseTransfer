@@ -4,10 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -19,10 +16,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class CruiseDateRange
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "cruise_date_range_cruise_date_range_id_seq")
-    @SequenceGenerator(name = "cruise_date_range_cruise_date_range_id_seq",
-            sequenceName = "cruise_date_range_cruise_date_range_id_seq")
     @Column(name = "cruise_date_range_id", nullable = false)
     private Long cruiseDateRangeId;
 

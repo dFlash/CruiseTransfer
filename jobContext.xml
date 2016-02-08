@@ -78,10 +78,28 @@
 		<property name="queryString" value="from Company" />
 		<property name="sessionFactory" ref="sessionFactoryRu" />
 	</bean>
+	
+	<bean id="regionReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Region" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="continentReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from Continent" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
+	
+	<bean id="cruiseLanguageServiceReader"
+		class="org.springframework.batch.item.database.HibernateCursorItemReader">
+		<property name="queryString" value="from CruiseLanguageService" />
+		<property name="sessionFactory" ref="sessionFactoryRu" />
+	</bean>
 
 	<job id="mainJob" xmlns="http://www.springframework.org/schema/batch">
  		<!-- First step: Drop data and constraints (fk) step -->
-<!--  		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
+		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
 			<flow>
 				<step id="cruiseStep">
 					<tasklet>
@@ -130,14 +148,6 @@
 					</tasklet>
 				</step>
 			</flow> 
- 			<flow>
-				<step id="fileInfoStep">
-					<tasklet>
-						<chunk reader="fileInfoReader" writer="fileInfoWriter"
-							commit-interval="20" />
-					</tasklet>
-				</step>
-			</flow>
 			<flow>
 				<step id="countryStep">
 					<tasklet>
@@ -178,13 +188,37 @@
 					</tasklet>
 				</step>
 			</flow>
+			<flow>
+				<step id="regionStep">
+					<tasklet>
+						<chunk reader="regionReader" writer="regionWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="continentStep">
+					<tasklet>
+						<chunk reader="continentReader" writer="continentWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
+			<flow>
+				<step id="cruiseLanguageServiceStep">
+					<tasklet>
+						<chunk reader="cruiseLanguageServiceReader" writer="cruiseLanguageServiceWriter"
+							commit-interval="100" />
+					</tasklet>
+				</step>
+			</flow>
 		</split>
- 		<step id="fileInfoStep">
+ 		<step id="fileInfoStep" next="addFkConstraints">
 			<tasklet>
 				<chunk reader="fileInfoReader" writer="fileInfoWriter"
 					commit-interval="50" />
 			</tasklet>
-		</step> -->
+		</step>
 		<!-- Last step: Create constraints (fk) step -->
 		<step id="addFkConstraints">
 			<tasklet ref="fkAppender"/>

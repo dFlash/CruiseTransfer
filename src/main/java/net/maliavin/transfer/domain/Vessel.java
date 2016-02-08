@@ -4,10 +4,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -22,10 +19,6 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 public class Vessel
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "vessel_vessel_id_seq")
-    @SequenceGenerator(name = "vessel_vessel_id_seq",
-            sequenceName = "vessel_vessel_id_seq")
     @Column(name = "vessel_id", nullable = false)
     private Long vesselId;
 

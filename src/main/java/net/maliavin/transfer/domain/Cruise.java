@@ -2,10 +2,7 @@ package net.maliavin.transfer.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -17,10 +14,6 @@ import javax.validation.constraints.Size;
 public class Cruise
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "cruise_cruise_id_seq")
-    @SequenceGenerator(name = "cruise_cruise_id_seq",
-            sequenceName = "cruise_cruise_id_seq")
     @Column(name = "cruise_id", nullable = false)
     private Long cruiseId;
 

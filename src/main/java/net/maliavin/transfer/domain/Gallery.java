@@ -2,10 +2,7 @@ package net.maliavin.transfer.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
@@ -14,10 +11,6 @@ import javax.validation.constraints.Size;
 public class Gallery
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO,
-            generator = "gallery_gallery_id_seq")
-    @SequenceGenerator(name = "gallery_gallery_id_seq",
-            sequenceName = "gallery_gallery_id_seq")
     @Column(name = "gallery_id", nullable = false)
     private Long galleryId;
 

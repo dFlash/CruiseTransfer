@@ -33,6 +33,9 @@
 				<value>net.maliavin.transfer.domain.CruiseCity</value>
 				<value>net.maliavin.transfer.domain.Gallery</value>
 				<value>net.maliavin.transfer.domain.FileInfo</value>
+				<value>net.maliavin.transfer.domain.Region</value>
+				<value>net.maliavin.transfer.domain.Continent</value>
+				<value>net.maliavin.transfer.domain.CruiseLanguageService</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -75,6 +78,9 @@
 				<value>net.maliavin.transfer.domain.CruiseCity</value>
 				<value>net.maliavin.transfer.domain.Gallery</value>
 				<value>net.maliavin.transfer.domain.FileInfo</value>
+				<value>net.maliavin.transfer.domain.Region</value>
+				<value>net.maliavin.transfer.domain.Continent</value>
+				<value>net.maliavin.transfer.domain.CruiseLanguageService</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

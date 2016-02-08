@@ -6,14 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-@Entity
-@Table(name = "public.country")
-public class Country
-{
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
+@Entity
+@Table(name = "public.continent")
+public class Continent
+{
     @Id
-    @Column(name = "country_id", nullable = false)
-    private Long countryId;
+    @Column(name = "continent_id", nullable = false)
+    private Long continentId;
 
     @Column(name = "name")
     @Size(min = 1, max = 256)
@@ -24,16 +26,17 @@ public class Country
     private String description;
 
     @Column(name = "gallery_id")
+    @NotFound(action = NotFoundAction.IGNORE)
     private Long galleryId;
 
-    public Long getCountryId()
+    public Long getContinentId()
     {
-        return countryId;
+        return continentId;
     }
 
-    public void setCountryId(Long countryId)
+    public void setContinentId(Long continentId)
     {
-        this.countryId = countryId;
+        this.continentId = continentId;
     }
 
     public String getName()
@@ -69,10 +72,8 @@ public class Country
     @Override
     public String toString()
     {
-        return "Country [countryId=" + countryId + ", name=" + name
+        return "Continent [continentId=" + continentId + ", name=" + name
                 + ", description=" + description + ", galleryId=" + galleryId
                 + "]";
     }
-    
-    
 }

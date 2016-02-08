@@ -28,7 +28,7 @@ public class PostgresSchemaManager implements SchemaManager
                 + "      REFERENCES %s (%s) MATCH SIMPLE %s";
         String sql = String.format(sqlTemplate, constraint.getSourceTable(),
                 getFkName(constraint.getSourceTable(),
-                        constraint.getTargetTable()),
+                        constraint.getSourceColumn()),
                 constraint.getSourceColumn(), constraint.getTargetTable(),
                 constraint.getTargetColumn(), constraint.getCondition());
         Session session = sessionFactory.getCurrentSession();
@@ -36,10 +36,10 @@ public class PostgresSchemaManager implements SchemaManager
         sqlQuery.executeUpdate();
     }
 
-    private String getFkName(String source, String target)
+    private String getFkName(String sourceTable, String sourceColumn)
     {
-        String fkName = FK_PREFIX + FK_NAME_SEPARATOR + source
-                + FK_NAME_SEPARATOR + target;
+        String fkName = FK_PREFIX + FK_NAME_SEPARATOR + sourceTable
+                + FK_NAME_SEPARATOR + sourceColumn;
         return fkName;
     }
 
