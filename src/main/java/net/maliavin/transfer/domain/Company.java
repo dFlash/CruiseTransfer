@@ -1,40 +1,19 @@
 package net.maliavin.transfer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "public.company")
 public class Company
 {
-    @Id
-    @Column(name = "company_id", nullable = false)
     private Long companyId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "ufl")
-    @Size(min = 1, max = 256)
     private String ufl;
 
-    @Column(name = "company_category_id")
-    @NotNull
     private Long companyCategoryId;
 
-    @Column(name = "company_cruise_category_id")
     private Long companyCruiseCategoryId;
 
-    @Column(name = "description")
-    @Size(max = 65536)
     private String description;
 
-    @Column(name = "gallery_id")
     private Long galleryId;
 
     public Long getCompanyId()

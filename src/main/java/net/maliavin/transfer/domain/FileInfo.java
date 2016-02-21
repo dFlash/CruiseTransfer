@@ -1,50 +1,19 @@
 package net.maliavin.transfer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.hibernate.annotations.Type;
-
-@Entity
-@Table(name = "public.file")
 public class FileInfo
 {
-
-    @Id
-    @Column(name = "file_id", nullable = false)
     private Long fileInfoId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "original_name")
-    @Size(min = 1, max = 256)
     private String originalName;
 
-    @Column(name = "content_type")
-    @Size(min = 1, max = 256)
     private String contentType;
 
-    @Column(name = "gallery_id")
-    @NotNull
     private Long galleryId;
     
-    @Column(name = "content", nullable = false)
-    @Lob
-    @Type(type="org.hibernate.type.BinaryType")
-    @NotNull
     private byte[] content;
-    
-    @Column(name = "thumbnail", nullable = false)
-    @Lob
-    @Type(type="org.hibernate.type.BinaryType")
-    @NotNull
+
     private byte[] thumbnail;
 
     public Long getFileInfoId()

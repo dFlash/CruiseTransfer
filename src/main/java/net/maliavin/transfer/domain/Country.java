@@ -1,29 +1,14 @@
 package net.maliavin.transfer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "public.country")
 public class Country
 {
 
-    @Id
-    @Column(name = "country_id", nullable = false)
     private Long countryId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "description")
-    @Size(max = 65536)
     private String description;
 
-    @Column(name = "gallery_id")
     private Long galleryId;
 
     public Long getCountryId()

@@ -7,227 +7,49 @@
 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
 		">
 
-	<bean id="cruiseReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Cruise" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-
-	<bean id="cruiseDateRangeReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from CruiseDateRange" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="vesselReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Vessel" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="cityReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from City" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="galleryReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Gallery" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="cruiseCityReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from CruiseCity" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="fileInfoReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from FileInfo" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="countryReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Country" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="companyCategoryReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from CompanyCategory" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="cruiseCategoryReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from CruiseCategory" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="vesselCategoryReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from VesselCategory" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="companyReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Company" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="regionReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Region" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="continentReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from Continent" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-	
-	<bean id="cruiseLanguageServiceReader"
-		class="org.springframework.batch.item.database.HibernateCursorItemReader">
-		<property name="queryString" value="from CruiseLanguageService" />
-		<property name="sessionFactory" ref="sessionFactoryRu" />
-	</bean>
-
 	<job id="mainJob" xmlns="http://www.springframework.org/schema/batch">
- 		<!-- First step: Drop data and constraints (fk) step -->
- 		<step id="dropDataAndConstraints" next="splitCruise">
-			<tasklet ref="cleaner"/>
-		</step>
-		<split id="splitCruise" task-executor="taskExecutor" next="fileInfoStep">
-			<flow>
-				<step id="cruiseStep">
-					<tasklet>
-						<chunk reader="cruiseReader" writer="cruiseWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="cruiseDateRangeStep">
-					<tasklet>
-						<chunk reader="cruiseDateRangeReader" writer="cruiseDateRangeWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="vesselStep">
-					<tasklet>
-						<chunk reader="vesselReader" writer="vesselWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="cityStep">
-					<tasklet>
-						<chunk reader="cityReader" writer="cityWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="galleryStep">
-					<tasklet>
-						<chunk reader="galleryReader" writer="galleryWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="cruiseCityStep">
-					<tasklet>
-						<chunk reader="cruiseCityReader" writer="cruiseCityWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow> 
-			<flow>
-				<step id="countryStep">
-					<tasklet>
-						<chunk reader="countryReader" writer="countryWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			 <flow>
-				<step id="companyCategoryStep">
-					<tasklet>
-						<chunk reader="companyCategoryReader" writer="companyCategoryWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="cruiseCategoryStep">
-					<tasklet>
-						<chunk reader="cruiseCategoryReader" writer="cruiseCategoryWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="vesselCategoryStep">
-					<tasklet>
-						<chunk reader="vesselCategoryReader" writer="vesselCategoryWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="companyStep">
-					<tasklet>
-						<chunk reader="companyReader" writer="companyWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="regionStep">
-					<tasklet>
-						<chunk reader="regionReader" writer="regionWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="continentStep">
-					<tasklet>
-						<chunk reader="continentReader" writer="continentWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-			<flow>
-				<step id="cruiseLanguageServiceStep">
-					<tasklet>
-						<chunk reader="cruiseLanguageServiceReader" writer="cruiseLanguageServiceWriter"
-							commit-interval="100" />
-					</tasklet>
-				</step>
-			</flow>
-		</split>
- 		<step id="fileInfoStep" next="addFkConstraints">
-			<tasklet>
-				<chunk reader="fileInfoReader" writer="fileInfoWriter"
-					commit-interval="50" />
-			</tasklet>
-		</step>
-		<!-- Last step: Create constraints (fk) step -->
-		<step id="addFkConstraints">
-			<tasklet ref="fkAppender"/>
+		<step id="master.Step.CompanyCategoty">
+			<partition step="slave.CompanyCategoty" partitioner="companyCategoryPartitioner">
+				<handler grid-size="4" task-executor="taskExecutor" />
+			</partition>
 		</step>
 	</job>
-	
+
+	<step id="slave.CompanyCategoty" xmlns="http://www.springframework.org/schema/batch">
+		<tasklet>
+			<chunk reader="companyCategoryReader" 
+				writer="companyCategoryWriter" commit-interval="5" />
+		</tasklet>
+	</step>
+
+
+	<bean id="companyCategoryReader"
+		class="org.springframework.batch.item.database.JdbcPagingItemReader"
+		scope="step">
+		<property name="dataSource" ref="dataSourceRu" />
+		<property name="queryProvider">
+			<bean
+				class="org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean">
+				<property name="dataSource" ref="dataSourceRu" />
+				<property name="selectClause" value="select company_category_id, name " />
+				<property name="fromClause" value="from company_category" />
+				<property name="whereClause"
+					value="where company_category_id between :startingIndex and :endingIndex" />
+				<property name="sortKey" value="company_category_id" />
+			</bean>
+		</property>
+		<property name="parameterValues">
+			<map>
+				<entry key="startingIndex" value="#{stepExecutionContext[startingIndex]}" />
+				<entry key="endingIndex" value="#{stepExecutionContext[endingIndex]}" />
+			</map>
+		</property>
+		<property name="pageSize" value="5"/>
+		<property name="rowMapper">
+			<bean class="net.maliavin.transfer.rowmapper.CompanyCategoryMapper" />
+		</property>
+	</bean>
+
 	<bean id="taskExecutor" class="org.springframework.core.task.SimpleAsyncTaskExecutor" />
 
 </beans>

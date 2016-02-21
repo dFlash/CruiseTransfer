@@ -2,38 +2,21 @@ package net.maliavin.transfer.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-@Entity
-@Table(name = "public.cruise_date_range")
 public class CruiseDateRange
 {
-    @Id
-    @Column(name = "cruise_date_range_id", nullable = false)
     private Long cruiseDateRangeId;
 
-    @Column(name = "begin_date")
     @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
-    @NotNull
     private Date beginDate;
 
-    @Column(name = "end_date")
     @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd")
-    @NotNull
     private Date endDate;
     
-    @Column(name = "cruise_id")
-    @NotNull
     private Long cruiseId;
 
-    @Column(name = "start_sity_id")
     private Long startCityId;
 
     public Long getCruiseDateRangeId()

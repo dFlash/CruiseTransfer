@@ -1,84 +1,41 @@
 package net.maliavin.transfer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "public.cruise")
 public class Cruise
 {
-    @Id
-    @Column(name = "cruise_id", nullable = false)
     private Long cruiseId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "ufl")
-    @Size(min = 1, max = 256)
     private String ufl;
 
-    @Column(name = "cruise_category_id")
-    @NotNull
     private Long cruiseCategoryId;
 
-    @Column(name = "vessel_id")
-    @NotNull
     private Long vesselId;
 
-    @Column(name = "cruise_language_service_id")
     private Long cruiseLanguageServiceId;
 
-    @Column(name = "description")
-    @Size(max = 65536)
     private String description;
 
-    @Column(name = "gallery_id")
     private Long galleryId;
 
-    @Column(name = "description_gallery_id")
     private Long descriptionGalleryId;
 
-    @Column(name = "region_id")
     private Long regionId;
 
-    @Column(name = "currency_id")
-    @NotNull
     private Long currencyId;
 
-    @Column(name = "price_value")
-    @NotNull
-    @Min(1)
-    @Max(100000)
     private Integer priceValue;
 
-    @Column(name = "is_simple_description")
     private boolean isSimpleDescription;
 
-    @Column(name = "simple_price_description")
-    @Size(max = 65536)
     private String simplePriceDescription;
 
-    @Column(name = "simple_route_description")
-    @Size(max = 65536)
     private String simpleRouteDescription;
 
-    @Column(name = "simple_itinerary_description")
-    @Size(max = 65536)
     private String simpleItineraryDescription;
 
-    @Column(name = "special_offer")
-    @Size(max = 256)
     private String specialOffer;
 
-    @Column(name = "is_import")
     private Boolean isImport;
 
     public Long getCruiseId()

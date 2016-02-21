@@ -1,8 +1,10 @@
 package net.maliavin.transfer.dao;
 
-import org.hibernate.SessionFactory;
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import net.maliavin.transfer.domain.Company;
@@ -11,13 +13,18 @@ import net.maliavin.transfer.domain.Company;
 public class CompanyDAOImpl implements CompanyDAO
 {
 
-    @Autowired
-    @Qualifier("sessionFactoryUa")
-    private SessionFactory sessionFactory;
+    private JdbcTemplate jdbcTemplate;
     
     public void add(Company company)
     {
-        sessionFactory.getCurrentSession().save(company);
+        //sessionFactory.getCurrentSession().save(company);
+    }
+    
+    @Autowired
+    @Qualifier("dataSourceUa")
+    public void setDataSource(DataSource dataSource)
+    {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
 }

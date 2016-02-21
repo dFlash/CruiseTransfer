@@ -2,106 +2,56 @@ package net.maliavin.transfer.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
-
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
-@Entity
-@Table(name = "public.vessel")
 public class Vessel
 {
-    @Id
-    @Column(name = "vessel_id", nullable = false)
     private Long vesselId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "ufl")
-    @Size(min = 1, max = 256)
     private String ufl;
 
-    @Column(name = "description")
-    @Size(max = 65536)
     private String description;
 
-    @Column(name = "vessel_category_id")
-    @NotNull
     private Long vesselCategoryId;
 
-    @Column(name = "company_id")
-    @NotNull
     private Long companyId;
 
-    @Column(name = "gallery_id")
     private Long galleryId;
 
-    @Column(name = "description_gallery_id")
     private Long descriptionGalleryId;
 
-    @Column(name = "schema_gallery_id")
     private Long schemaGalleryId;
 
-    @Column(name = "build_year")
     @DateTimeFormat(iso = ISO.NONE, pattern = "yyyy")
-    @Past
     private Date buildYear;
 
-    @Column(name = "width")
-    @Min(0)
     private Float width;
 
-    @Column(name = "length")
-    @Min(0)
     private Float length;
 
-    @Column(name = "speed")
-    @Min(0)
     private Float speed;
 
-    @Column(name = "capacity")
-    @Min(0)
     private Integer capacity;
 
-    @Column(name = "balancer")
     private Boolean balancer;
 
-    @Column(name = "deck_quantity")
-    @Min(0)
     private Integer deckQuantity;
 
-    @Column(name = "cabin_quantity")
-    @Min(0)
     private Integer cabinQuantity;
 
-    @Column(name = "restaurant_quantity")
-    @Min(0)
     private Integer restaurantQuantity;
 
-    @Column(name = "lift_quantity")
-    @Min(0)
     private Integer liftQuantity;
 
-    @Column(name = "pool_quantity")
-    @Min(0)
     private Integer poolQuantity;
 
-    @Column(name = "is_import")
     private Boolean isImport;
 
-    @Column(name = "is_enabled")
     private Boolean isEnabled;
-    
-    
+
     public Long getVesselId()
     {
         return vesselId;

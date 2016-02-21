@@ -21,7 +21,20 @@ public class CompanyCategoryServiceImpl implements CompanyCategoryService
     {
         for (CompanyCategory companyCategory : companyCategories)
         {
-            companyCategoryDAO.add(companyCategory);
+            boolean isMappingPresent = companyCategoryDAO
+                    .isMappingPresent(companyCategory.getCompanyCategoryId());
+            if (!isMappingPresent)
+            {
+                boolean isEntityPresent = companyCategoryDAO
+                        .isEntityPresent(companyCategory);
+                if (!isEntityPresent)
+                {
+                    companyCategoryDAO.add(companyCategory);
+                }
+                Long uaId = companyCategoryDAO.getEntityId(companyCategory);
+                companyCategoryDAO.addMapping(uaId,
+                        companyCategory.getCompanyCategoryId());
+            }
         }
     }
 

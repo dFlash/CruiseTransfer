@@ -16,7 +16,7 @@ public class Main
 
     private static Logger logger = Logger.getLogger(Main.class);
     private static final String[] springConfig = { "launchContext.xml",
-            "dbContext.xml", "jobContext.xml", "constraints.xml" };
+            "dbContext.xml", "jobContext.xml" };
     private static ApplicationContext context;
 
     public static void main(String[] args)

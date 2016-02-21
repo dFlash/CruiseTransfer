@@ -1,49 +1,24 @@
 package net.maliavin.transfer.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
-
-@Entity
-@Table(name = "public.city")
 public class City
 {
 
-    @Id
-    @Column(name = "city_id", nullable = false)
     private Long cityId;
 
-    @Column(name = "name")
-    @Size(min = 1, max = 256)
     private String name;
 
-    @Column(name = "ufl")
-    @Size(min = 1, max = 256)
     private String ufl;
 
-    @Column(name = "description")
-    @Size(max = 65536)
     private String description;
 
-    @Column(name = "gallery_id")
     private Long galleryId;
 
-    @Column(name = "country_id")
-    @NotNull
     private Long countryId;
 
-    @Pattern(regexp = "^[-+]?([1-8]?\\d(\\.\\d+)?|90(\\.0+)?)$")
     private String latitude;
 
-    @Pattern(regexp = "^[-+]?(180(\\.0+)?|((1[0-7]\\d)|([1-9]?\\d))(\\.\\d+)?)$")
     private String longitude;
 
-    @Column(name = "is_enabled")
     private Boolean isEnabled;
 
     public Long getCityId()
